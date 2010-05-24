@@ -16,3 +16,6 @@
 [submodule "vendor/express"]
 	path = vendor/express
 	url = git://github.com/btakita/express.git
+[submodule "vendor/xmlbuilder.js"]
+	path = vendor/xmlbuilder.js
+	url = git://github.com/btakita/xmlbuilder.js.git
