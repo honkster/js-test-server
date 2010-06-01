@@ -34,6 +34,7 @@ PKG_FILES = FileList[
   '*.rb',
   'lib/**/**',
   'bin/**/**',
+  'public/**/**',
   'spec/**/*.rb',
   'vendor/**/*.rb'
 ]
