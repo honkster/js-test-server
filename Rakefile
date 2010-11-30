@@ -58,13 +58,7 @@ spec = Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.author = "Brian Takita"
   s.email = "brian.takita@gmail.com"
-  s.homepage = "http://pivotallabs.com"
-  s.rubyforge_project = "pivotalrb"
-  Bundler::Definition.from_gemfile("#{File.dirname(__FILE__)}/Gemfile").dependencies.select do |dependency|
-    dependency.groups.include?(:gem)
-  end.each do |dependency|
-    s.add_dependency(dependency.name, dependency.version_requirements)
-  end
+  s.homepage = "http://github.com/honkster/js-test-server"
 end
 
 Rake::GemPackageTask.new(spec) do |pkg|
