@@ -1,3 +1,4 @@
+source :gemcutter
 group :gem do
   gem 'sinatra', '>=1.0'
   gem 'thin', '>=1.2.7'
@@ -6,9 +7,12 @@ group :gem do
   gem 'trollop', '>=1.16.2'
   gem 'guid', '>=0.1.1'
   gem 'json', '>=1.4.0'
+  gem 'activesupport'
+  gem 'i18n'
 end
 
 group :test do
+  gem 'rspec', '1.3.1'
   gem 'selenium-rc', '2.2.1'
   gem 'lsof', '0.3.0'
   gem 'rack-test', '0.5.3'
