@@ -28,7 +28,7 @@ def run_suite
 end
 
 PKG_NAME = "honkster-js-test-server"
-PKG_VERSION = "0.2.9"
+PKG_VERSION = "0.2.10"
 PKG_FILES = FileList[
   '[A-Z]*',
   '*.rb',
