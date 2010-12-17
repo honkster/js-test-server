@@ -27,7 +27,7 @@ class JsTestServer::Server::Views::Page < Erector::Widget
   end
 
   def javascript(params={})
-    if params[:src]
+    if params.is_a?(Hash) && params[:src]
       script({:type => "text/javascript"}.merge(params))
     else
       super

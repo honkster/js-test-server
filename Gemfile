@@ -12,10 +12,11 @@ group :gem do
 end
 
 group :test do
+  gem 'focused-test', '0.6.0'
+  gem 'lsof', '0.3.0'
+  gem 'nokogiri', '1.4.1'
+  gem 'rack-test', '0.5.6'
+  gem 'rr', '1.0.2'
   gem 'rspec', '1.3.1'
   gem 'selenium-rc', '2.2.1'
-  gem 'lsof', '0.3.0'
-  gem 'rack-test', '0.5.3'
-  gem 'rr', '0.10.11'
-  gem 'nokogiri', '1.4.1'
 end

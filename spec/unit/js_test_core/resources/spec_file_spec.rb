@@ -3,31 +3,63 @@ require File.expand_path("#{File.dirname(__FILE__)}/../../unit_spec_helper")
 module JsTestServer::Server::Resources
   describe SpecFile do
     describe "Configuration" do
-      attr_reader :doc
-      before do
-        JsTestServer.framework_name = "screw-unit"
-        JsTestServer::Server::Views::Suite.project_js_files += ["/javascripts/test_file_1.js", "/javascripts/test_file_2.js"]
-        JsTestServer::Server::Views::Suite.project_css_files += ["/stylesheets/test_file_1.css", "/stylesheets/test_file_2.css"]
+      describe "jasmine" do
+        attr_reader :doc
+        before do
+          JsTestServer.framework_name = "jasmine"
+          JsTestServer.framework_path = "#{library_root_dir}/spec/frameworks/jasmine/lib"
+          JsTestServer::Server::Views::Suite.project_js_files += ["/javascripts/test_file_1.js", "/javascripts/test_file_2.js"]
+          JsTestServer::Server::Views::Suite.project_css_files += ["/stylesheets/test_file_1.css", "/stylesheets/test_file_2.css"]
 
-        response = get(SpecFile.path("/failing_spec"))
-        response.should be_http( 200, {}, "" )
+          response = get(SpecFile.path("/failing_spec"))
+          response.should be_http( 200, {}, "" )
 
-        @doc = Nokogiri::HTML(response.body)
+          @doc = Nokogiri::HTML(response.body)
+        end
+
+        after do
+          JsTestServer::Server::Views::Suite.project_js_files.clear
+          JsTestServer::Server::Views::Suite.project_css_files.clear
+        end
+
+        it "renders project js files" do
+          doc.at("script[@src='/javascripts/test_file_1.js']").should_not be_nil
+          doc.at("script[@src='/javascripts/test_file_2.js']").should_not be_nil
+        end
+
+        it "renders project css files" do
+          doc.at("link[@href='/stylesheets/test_file_1.css']").should_not be_nil
+          doc.at("link[@href='/stylesheets/test_file_2.css']").should_not be_nil
+        end
       end
 
-      after do
-        JsTestServer::Server::Views::Suite.project_js_files.clear
-        JsTestServer::Server::Views::Suite.project_css_files.clear
-      end
+      describe "screw-unit" do
+        attr_reader :doc
+        before do
+          JsTestServer.framework_name = "screw-unit"
+          JsTestServer::Server::Views::Suite.project_js_files += ["/javascripts/test_file_1.js", "/javascripts/test_file_2.js"]
+          JsTestServer::Server::Views::Suite.project_css_files += ["/stylesheets/test_file_1.css", "/stylesheets/test_file_2.css"]
 
-      it "renders project js files" do
-        doc.at("script[@src='/javascripts/test_file_1.js']").should_not be_nil
-        doc.at("script[@src='/javascripts/test_file_2.js']").should_not be_nil
-      end
+          response = get(SpecFile.path("/failing_spec"))
+          response.should be_http( 200, {}, "" )
 
-      it "renders project css files" do
-        doc.at("link[@href='/stylesheets/test_file_1.css']").should_not be_nil
-        doc.at("link[@href='/stylesheets/test_file_2.css']").should_not be_nil
+          @doc = Nokogiri::HTML(response.body)
+        end
+
+        after do
+          JsTestServer::Server::Views::Suite.project_js_files.clear
+          JsTestServer::Server::Views::Suite.project_css_files.clear
+        end
+
+        it "renders project js files" do
+          doc.at("script[@src='/javascripts/test_file_1.js']").should_not be_nil
+          doc.at("script[@src='/javascripts/test_file_2.js']").should_not be_nil
+        end
+
+        it "renders project css files" do
+          doc.at("link[@href='/stylesheets/test_file_1.css']").should_not be_nil
+          doc.at("link[@href='/stylesheets/test_file_2.css']").should_not be_nil
+        end
       end
     end
 

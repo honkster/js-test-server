@@ -13,7 +13,6 @@ class JsTestServer::Server::Views::Suites::Jasmine < JsTestServer::Server::Views
     project_css_files
     spec_script_elements
     javascript "JsTestServer.JasmineDriver.init();"
-
   end
 
   def core_js_files

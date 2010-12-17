@@ -12,13 +12,14 @@ class Spec::ExampleGroup
       eigen_class
     end
   end
-  
+
   include Rack::Test::Methods
   include BeHttp
   include WaitFor
-  attr_reader :framework_path, :spec_path, :root_path, :server, :connection
+  attr_reader :framework_path, :library_root_dir, :spec_path, :root_path, :server, :connection
   before(:all) do
     dir = File.dirname(__FILE__)
+    @library_root_dir = LIBRARY_ROOT_DIR
     @framework_path = File.expand_path("#{LIBRARY_ROOT_DIR}/spec/example_framework")
     @spec_path = File.expand_path("#{LIBRARY_ROOT_DIR}/spec/example_spec")
     @root_path = File.expand_path("#{LIBRARY_ROOT_DIR}/spec/example_root")

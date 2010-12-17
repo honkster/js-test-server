@@ -78,7 +78,7 @@ class JsTestServer::Server::Runner
   def standalone_rackup(rack_builder)
     require "sinatra"
 
-    rack_builder.use JsTestServer::Server::App
+    rack_builder.run JsTestServer::Server::App
     rack_builder.run Sinatra::Application
   end
 end

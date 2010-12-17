@@ -10,6 +10,7 @@ module JsTestServer::Server::Resources
       @browser_async_callback = lambda do |commands_response|
         browser_session.last_response = Rack::MockResponse.new(*commands_response)
       end
+      pending "Getting this to work on ruby 1.9.2"
     end
 
     describe "GET /remote_control/subscriber" do

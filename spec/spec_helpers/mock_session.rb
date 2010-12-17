@@ -10,7 +10,7 @@ class Rack::Test::Session
   class << self
     def http_action_with_async_catch(method_name)
       alias_method "#{method_name}_without_async_catch", method_name
-      class_eval((<<-RUBY), __FILE__, __LINE__)
+      class_eval((<<-RUBY), __FILE__, __LINE__ + 1)
       def #{method_name}_with_async_catch(*args, &block)
         catch(:async) {return #{method_name}_without_async_catch(*args, &block)}
         nil
